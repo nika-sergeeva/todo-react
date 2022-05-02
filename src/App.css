@@ -1,38 +1,375 @@
-.App {
-  text-align: center;
+.App{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+main{
+    background-position-y: top;
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    min-height: 700px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+main.dark{
+    background-color: hsl(235, 21%, 11%);
+    background-image: url(/public/images/bg-desktop-dark.jpg);
+    background-repeat: no-repeat;
+}
+
+main.light{
+    background-color: hsl(0, 0%, 98%);
+    background-image: url(/public/images/bg-desktop-light.jpg);
+}
+
+.container{
+    width: 480px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: top;
+    padding-top: 67px;
+    padding-bottom: 50px;
+    text-transform: uppercase;
+    color: white;
+    letter-spacing: 12px;
+    font-size: 23px;
+    font-weight: 700;
+}
+
+.switcher{
+    width: 23px;
+    height: 23px;
+}
+
+main.dark .input-box{
+    background-color: hsl(235, 24%, 19%);
+    box-shadow: 0px 18px 37px -2px rgba(0, 0, 0, 0.34);
+}
+
+main.light .input-box{
+    background-color: white;
+    box-shadow: 0px 18px 37px -2px hsl(0deg 0% 73%);
+}
+
+.input-box{
+    background-color: white;
+    height: 54px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    padding-left: 14px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+input{
+    padding-left: 27px;
+    height: 20px;
+}
+
+.input-btn{
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    border: 0.1px solid hsl(233, 14%, 35%);
+    background-color: transparent;
+    cursor: pointer;
+}
+
+small{
+    color: hsl(233, 14%, 35%);
+    text-align: center;
+    font-weight: 700;
+    font-size: 12px;
+    padding: 50px;
+}
+
+
+/* CHECKBOX */
+
+  .dark .round label{
+    background-color: hsl(235, 24%, 19%);
   }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  .round {
+    position: relative;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .round label {
+    background-color: #fff;
+    border: 1px solid hsl(233, 14%, 35%);
+    border-radius: 50%;
+    cursor: pointer;
+    height: 28px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 28px;
   }
+  
+  .round label:after {
+    border: 1px solid white;
+    border-top: none;
+    border-right: none;
+    content: "";
+    height: 6px;
+    left: 7px;
+    opacity: 0;
+    position: absolute;
+    top: 8px;
+    transform: rotate(-45deg);
+    width: 12px;
+  }
+  
+  .round input[type="checkbox"] {
+    visibility: hidden;
+  }
+  
+  .round input[type="checkbox"]:checked + label {
+    border: solid 0px transparent;
+    border-color: none; 
+    background: linear-gradient(50deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+  }
+
+  .round input[type="checkbox"]:checked + label:after {
+    opacity: 1;
+  }
+  
+  .round input[type="checkbox"] + label:hover{ 
+    border: solid 2px transparent;
+    border-radius: 50%;
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+  }
+
+  .dark .round input[type="checkbox"] + label:hover{
+    background-image: linear-gradient(hsl(235, 24%, 19%), hsl(235, 24%, 19%)), 
+    linear-gradient(50deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+  }
+
+  .light .round input[type="checkbox"] + label:hover{
+    background-image: linear-gradient(white, white), 
+    linear-gradient(50deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+  } 
+
+  .round input[type="checkbox"]:checked + label:hover{ 
+    border: none;
+    border-radius: 50%;
+    background-image: linear-gradient(50deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+  }
+
+.plan-text{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    text-align: start;
+    width: 100%;
+    padding: 0 15px;
+}
+
+.plan-text.checked{
+    text-decoration: line-through;
+    color: hsl(233, 14%, 35%);
+}
+
+.plan-box{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between; 
+    align-items: center;
+    padding: 0 15px;
+    height: 54px;
+    width: 100%;
+    border-bottom: 0.1px solid hsl(233, 14%, 35%);
+    font-size: 17px;
+    cursor: grab;
+}
+
+.plan-delete{
+    display: none;
+    background: none;
+    border: none;
+}
+
+.plan-box:hover > .plan-delete{
+    display: block;
+}
+
+.light .plan-box{
+    border-bottom: 0.1px solid hsl(233, 11%, 84%);
+    color: hsl(235, 19%, 35%);
+}
+
+.dark .plan-box{
+    color: hsl(234, 39%, 85%);
+}
+
+.todos{
+    margin-top: 25px;
+    border-radius: 4px 4px 0 0;
+}
+
+main.dark .todos{
+    background-color: hsl(235, 24%, 19%);
+    box-shadow: 0px 18px 37px -2px rgba(0, 0, 0, 0.34);
+}
+
+main.light .todos{
+    background-color: white;
+    box-shadow: 0px 15px 49px 0px rgba(0, 0, 0, 0.2);
+}
+
+.checkIcon{
+    width: 10px;
+    height: 10px;
+}
+
+.plan-delete{
+    background-color: transparent;
+    border-style: none;
+    cursor: pointer;
+}
+
+main.dark .filters{
+    background-color: hsl(235, 24%, 19%);
+    box-shadow: 0px 18px 37px -2px rgba(0, 0, 0, 0.34);
+}
+
+main.light .filters{
+    background-color: white;
+    box-shadow: 0px 15px 49px 0px rgba(0, 0, 0, 0.2);
+}
+
+.filters{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px 0; 
+    border-radius: 0 0 4px 4px;
+}
+
+.count{
+    margin: 0;
+    margin-left: 15px;
+    color: hsl(233, 14%, 35%);
+    font-weight: 400;
+}
+
+.filters-btn{
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-right: 15px;
+    font-family: inherit;
+    color: hsl(233, 14%, 35%);
+    font-weight: 400;
+}
+
+.ifBlank{
+    text-align: center;
+    margin-top: 100px;
+    font-size: 22px;
+}
+
+.dark .ifBlank{
+    color: white;
+}
+
+.light .ifBlank{
+    color: hsl(236, 9%, 61%);
+}
+
+.sort-btn{
+    font-weight: 700;
+    color: hsl(233, 14%, 35%);
+    background-color: transparent;
+    border: none;
+    font-family: inherit;
+} 
+
+.sort-btn.active{
+color: hsl(220, 98%, 61%);
+border: none;
+}
+
+.sorting-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 20px 24px;
+    margin-top: 25px;
+    box-shadow: 0px 18px 37px -2px rgb(0 0 0 / 34%);
+    border-radius: 4px;
+}
+
+main.dark .sorting-box{
+    background-color: hsl(235, 24%, 19%);
+    box-shadow: 0px 18px 37px -2px rgb(0 0 0 / 34%);
+}
+
+main.light .sorting-box{
+    background-color: white;
+}
+
+.sorting-box .btnGroup .sort-btn{
+    padding-left: 8px;
+    padding-right: 8px;
+    font-size: 15px;
+}
+
+@media only screen and (max-width: 513px){
+    .container{
+        padding: 0 20px;
+    }
+
+    .plan-text{
+        font-size: 13px;
+    }
+
+    input{
+        font-size: 15px;
+    }
+
+    .round label {
+        height: 24px;
+        width: 24px;
+    }
+
+    .input-btn{
+        width: 24px;
+        height: 24px;
+    }
+
+    .round label:after {
+        height: 4px;
+        left: 8px;
+        top: 8px;
+        width: 7px;
+    }
+
+    .plan-box > .plan-delete{
+        display: block;
+    }
+
+    main.dark {
+        background-image: url(/public/images/bg-mobile-dark.jpg)
+    }
+
+    main.light {
+        background-image: url(/public/images/bg-mobile-light.jpg)
+    }
 }
