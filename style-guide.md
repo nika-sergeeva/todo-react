@@ -56,4 +56,3 @@ Delete todos from the list
 Clear all completed todos
 Toggle light and dark mode
 # Bonus: Drag and drop to reorder items on the list
-

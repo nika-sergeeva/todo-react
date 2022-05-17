@@ -1,21 +1,28 @@
-import React, {useState} from 'react'
+import React from 'react'
+import { updateFilterStatus } from '../store/todoSlice'
+import {useDispatch, useSelector} from 'react-redux'
 
+const MyButtonGroup = () => {
 
-const MyButtonGroup = (props) => {
+const dispatch = useDispatch()
+const activeBtn = useSelector(state => state.todo.filterStatus)
 
-    const btns = [
+const btns = [
         {name: 'All', st: 'all'},
         {name: 'Active', st: false},
         {name: 'Complited', st: true}
     ]
 
-const [activeBtn, setActiveBtn] = useState(0)
+const updateFilter = (val) => {
+    dispatch(updateFilterStatus(val))
+}
 
-const groupOfBtns = btns.map((item, i) => {
+const groupOfBtns = btns.map((item, index) => {
     return <button 
-            key={item.name + i}
-            onClick={() => {setActiveBtn(i); props.handleClick(item.st)}}
-            className={i === activeBtn? "sort-btn active" : "sort-btn"}
+            key={item.name + index}
+            onClick={() => updateFilter(item.st)}
+            className={item.st === activeBtn ? "sort-btn active" : "sort-btn"}
+            value={item.st}
             >
             {item.name}
         </button>
