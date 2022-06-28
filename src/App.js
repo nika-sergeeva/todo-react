@@ -19,6 +19,7 @@ const [todos, setTodos] = useState('')
 const todo = useSelector(state => state.todo.todo) 
 const dispatch = useDispatch()
 const addTodo = () => {
+  if(todos.length)
   dispatch(addNewPost({todos}))
   setTodos('')
 } 
@@ -58,7 +59,8 @@ const filteredTodoList = [...todo].filter((item) => {
      return item
   })
 
-//Unmount on changing width
+
+//Hide on changing width
 const [width, setWidth] = useState(window.innerWidth)
 useEffect(()=> {
  window.addEventListener("resize", function () {

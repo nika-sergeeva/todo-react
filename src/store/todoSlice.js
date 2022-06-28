@@ -49,12 +49,15 @@ const todoSlice = createSlice({
           state.todo = state.todo.filter(item => !item.checked)
         },
         reorderList(state, action){
+          if(state.filterStatus === 'all'){
           const smth = action.payload
           state.todo = smth
+          }
         },
         updateFilterStatus(state, action){
           const status = action.payload
            state.filterStatus = status
+          
         },
     },
 })
